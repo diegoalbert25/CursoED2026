@@ -167,3 +167,95 @@ void mostrarCola(nodo *cab)
     
 }
 
+void atenderPaciente()
+{
+    nodo *temp;
+
+    if(cabPrioridad != NULL)
+    {
+        temp = cabPrioridad;
+
+        printf("\nAtendiendo paciente prioritario");
+        printf("\nNombre: %s\n", temp->nombre);
+
+        cabPrioridad = cabPrioridad->sig;
+
+        free(temp);
+
+        if (cabPrioridad == NULL)
+        {
+            ultimoPrioridad = NULL;
+        }
+
+        return;
+    }
+    
+    if(cabNormal != NULL)
+    {
+        printf("\nAtendiendo paciente normal");
+        printf("\nNombre: %s\n", temp->nombre);
+
+        cabNormal = cabNormal->sig;
+
+        free(temp);
+
+        if (cabNormal == NULL)
+        {
+            ultimoNormal = NULL;
+        }
+
+        return;
+    }
+
+    printf("\nNo hay pacientes en espera\n");
+}
+int main()
+{
+    int opcion;
+
+    do
+    {
+        printf("\n========== EPS ==========");
+        printf("\n1. Registrar paciente");
+        printf("\n2. Mostrar cola prioritaria");
+        printf("\n3. Mostrar cola normal");
+        printf("\n4. Atender paciente");
+        printf("\n5. Salir");
+        printf("\nOpcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion)
+        {
+            case 1:
+                registrarPaciente();
+                break;
+
+            case 2:
+                printf("\nCOLA PRIORITARIA\n");
+                mostrarCola(cabPrioridad);
+                break;
+
+            case 3:
+                printf("\nCOLA NORMAL\n");
+                mostrarCola(cabNormal);
+                break;
+
+            case 4:
+                atenderPaciente();
+                break;
+
+            case 5:
+                printf("\nPrograma finalizado\n");
+                break;
+
+            default:
+                printf("\nOpcion invalida\n");
+        }
+
+    } while (opcion != 5);
+
+    return 0;
+}
+
+
+
