@@ -415,9 +415,10 @@ int main()
                 break;
 
             case 6:
+                liberarMemoria();
                 printf("Gracias por utilizar el sistema.\n");
                 break;
-
+                
             default:
                 printf("Opcion invalida.\n");
         }
